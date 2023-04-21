@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T•Services</title>
+    <link rel="icon" type="image/png" href="/imagens/T• Linkedin T•Services.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div class="top-nav">
+            <ul>
+                <li><a href="/Home/index.html">Home</a></li>
+                <li><a href="/sobre/index.html">Sobre</a></li>
+                <li><a href="/produtos/index.html">Produtos</a></li>
+                <li><a href="/servicos/index.html">Serviços</a></li>
+                <li><a href="/parceiros/index.html">Parceiros</a></li>
+            </ul>
+            <a href="/contato/index.html">
+                <button>Contato</button>
+            </a>
+        </div>
+ 
+        <!--Formulario de Contato-->
+
+        <form action="https://formsubmit.co/gabrieljunggaia@gmail.com" method="POST" class="form" enctype="multipart/form-data">
+            <label for="name">Nome</label>
+            <input type="text" name="name" id="name" required />
+          
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" required />
+
+            <label for="telefone">Telefone(Opcional)</label>
+            <input type="telefone" name="telefone" id="telefone"  />
+          
+            <label for="message">Mensagem</label>
+            <textarea name="message" id="message" required></textarea>
+          
+            <div class="upload-form">
+                <div class="upload-file">
+                  <i class="fa fa-cloud-upload"></i>
+                  <h3>Arraste o arquivo aqui ou clique para selecionar um arquivo</h3>
+                  <input type="file" name="file" id="file" class="inputfile" />
+                  <label for="file">Escolher arquivo</label>
+                </div>
+                <button type="submit">Enviar</button>
+              </div>
+              
+          
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_next" value="http://127.0.0.1:5500/contato/agradecimento.html" />
+          
+
+
+            <div id="loading" style="display: none;">Enviando...</div>
+          </form>
+          
+
+    </div>
+    </div>
+    <footer class="footer">
+        <div class="grupo-1">
+            <div class="box">
+                <figure>
+                    <a href="#">
+                        <img src="/imagens/Tazul.png" class="logof">
+                    </a>
+                </figure>
+            </div>
+            <div class="box">
+                <h2>SOBRE NÓS</h2>
+                <p>Endereço T•Services Engenharia e Comércio Eireli Av. Vereador José Diniz, 3.707 Cjs. 11 e 14 Campo Belo 04603-004 São Paulo/SP</p>
+                <p>Tel. +55 (11) 4810-7575</p>
+                <p>e-mail: info@tservices.com</p>
+            </div>
+            <div class="box">
+                <h2>MÍDIAS SOCIAIS</h2>
+                <div class="rede-social">
+                    <a href="https://www.linkedin.com/company/t•services/" class="fa fa-linkedin"></a>
+                    <a href="https://api.whatsapp.com/send/?phone=5511958432926&text&type=phone_number&app_absent=0" class="fa fa-whatsapp"></a>
+                </div>
+            </div>
+        </div>
+        <div class="grupo-2">
+            <small>&copy; 2023 <b>T•Services</b> - Todos os Direitos Reservados.</small>
+        </div>
+    </footer>
+
+
+    <!--Script para telas menores que 768px-->
+
+    <script>
+        const form = document.querySelector('.form');
+        const submitBtn = document.querySelector('#submitBtn');
+        const loading = document.querySelector('#loading');
+      
+        form.addEventListener('submit', (event) => {
+          // Mostra o loading
+          loading.style.display = 'block';
+          // Desabilita o botão Enviar
+          submitBtn.disabled = true;
+      
+          // Verifica se o navegador suporta notificações
+          if ('Notification' in window) {
+            // Pede permissão para enviar notificações
+            Notification.requestPermission().then(permission => {
+              // Se a permissão foi concedida, cria uma notificação
+              if (permission === 'granted') {
+                new Notification('Enviando', {
+                  body: 'Aguarde enquanto enviamos sua mensagem...',
+                  icon: 'https://cdn-icons-png.flaticon.com/512/497/497635.png'
+                });
+              }
+            });
+          }
+        });
+      
+        form.addEventListener('formsubmit:done', (event) => {
+          // Esconde o loading
+          loading.style.display = 'none';
+          // Habilita o botão Enviar
+          submitBtn.disabled = false;
+      
+          // Verifica se o navegador suporta notificações
+          if ('Notification' in window) {
+            // Cria uma notificação de sucesso
+            new Notification('Mensagem enviada', {
+              body: 'Obrigado pelo seu contato!',
+              icon: 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
+            });
+          }
+        });
+      </script> 
+        <script src="script.js"></script>
+</body>
+
+</html>
